@@ -1,9 +1,22 @@
 #!/bin/bash
+
+# taking screen shot and saving it to temp
 scrot /tmp/screen.png
-convert /tmp/screen.png -blur 15,5 /tmp/screen.png
+
+# bluring the screen shot
+convert /tmp/screen.png -blur 0x8 /tmp/screen.png
+
+# pixlate
 #convert /tmp/screen.png -scale 10% -scale 1000% /tmp/screen.png
+
+#convert to B/W
+#convert -type Grayscale /tmp/screen.png /tmp/screen.png
+
+# merging fossaia logo with image
 composite -blend 9 lock-head.png -gravity center /tmp/screen.png /tmp/screen.png
-[[ -f $1 ]] && convert /tmp/screen.png $1 -gravity center -composite -matte /tmp/screen.png
-dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop
+
+#use i3lock
 i3lock -u -i /tmp/screen.png
+
+# clean temp
 rm /tmp/screen.png
