@@ -1,5 +1,19 @@
 #!/bin/bash
 
+usage() {
+	while read; do printf '%s\n' "$REPLY"; done <<- EOF
+		Usage: lock-[flags]
+		    Flags:
+		        --help|-h                       Show this message.
+		        --image_file|-w                 Lock screen with wallpaper.
+		        --screenshot|-s                 Lock screen with a screenshot of your current workspace.
+
+		        --grayscale|-g                  Make the image grayscale.
+		        --pixelize|-p                   Pixelize the image.
+		        --blur|-b                       Blur the image.
+	EOF
+}
+
 # taking screen shot and saving it to temp
 scrot /tmp/screen.png
 
